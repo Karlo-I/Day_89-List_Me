@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIST Homepage</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="static/css/styles.css"> <!-- Own custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Complements the icon class: <i class="fas fa-bars"></i> -->
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid"> <!-- Changed to container-fluid for full width -->
+            <!-- Brand Name -->
+            <a class="navbar-brand">LIST ME</a>
+            <!-- Login & Register Buttons / Logout Button -->
+            <div class="d-flex ml-auto">
+                {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('login') }}" class="btn btn-transparent mx-2">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-transparent mx-2">Register</a>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('logout') }}" class="btn btn-transparent mx-2">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid"> <!-- Changed to container-fluid for full width -->
+        <!-- Welcome Message and Explanation -->
+        <h1 class="text-center mt-5">Welcome to List Me!</h1>
+        <p class="text-center lead mt-3">Stay organized and never miss a task again. List Me is your go-to platform for creating, managing, and completing your daily to-do list!</p>
+
+        <!-- Instructions for login -->
+        <p class="text-center">Login or register to start managing your to-do list.</p>
+    </div>
+
+    <!-- Bootstrap JS & Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

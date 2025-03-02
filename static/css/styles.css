@@ -1,0 +1,344 @@
+/* General Navbar Styling */
+.navbar {
+    background-color: #fff; /* White background */
+    padding: 10px 15px; /* Minimal padding to prevent excessive height */
+    border-bottom: none;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #4CAF50; /* Green color */
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+/* Navbar Login & Register Buttons */
+.navbar .btn-transparent {
+    background-color: transparent; /* Transparent background */
+    border: 1px solid #4CAF50; /* Green border */
+    color: #4CAF50; /* Green text */
+    padding: 8px 20px; /* Adequate padding */
+    font-size: 1rem;
+    border-radius: 4px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar .btn-transparent:hover {
+    background-color: #4CAF50; /* Green background on hover */
+    color: white; /* White text on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+/* Navbar button styling */
+.navbar .logout-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white !important; /* Ensure text color is white */
+    padding: 10px 20px; /* Adequate padding */
+    font-size: 1rem;
+    border: 2px solid #4CAF50; /* Border matching the background */
+    border-radius: 20px; /* Rounded button corners */
+    transition: all 0.3s ease; /* Smooth transition on hover */
+}
+
+.navbar .logout-btn:hover {
+    background-color: #fff; /* White background on hover */
+    color: #4CAF50; /* Green text on hover */
+    border-color: #4CAF50; /* Keep border color consistent */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Ensure buttons stay side by side */
+.navbar .d-flex {
+    display: flex;
+    align-items: center; /* Vertically center the buttons */
+    justify-content: flex-end; /* Push logout button to the right */
+}
+
+/* Responsiveness: Adjustments for small screen sizes */
+@media (max-width: 768px) {
+    .navbar .navbar-brand {
+        font-size: 1.4rem; /* Smaller font for the brand name */
+    }
+
+    .navbar .btn-transparent {
+        font-size: 0.9rem; /* Smaller buttons on mobile */
+        padding: 6px 15px; /* Smaller padding on mobile */
+    }
+
+    .navbar .logout-btn {
+        font-size: 0.9rem; /* Smaller button text on mobile */
+        padding: 8px 16px; /* Adjust button padding */
+    }
+}
+
+
+/* General body styles */
+html, body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #4CAF50;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+h5 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #555;
+    margin-top: 0;
+}
+
+/* To Do List Form */
+form {
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+form input[type="text"],
+form input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* To-Do List */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+}
+
+li input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+li a {
+    color: #f44336;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+li a:hover {
+    color: #d32f2f;
+}
+
+/* Flash message */
+.flash {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* For empty to-do list */
+p {
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+}
+
+/* General container to center content */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Heading styling */
+.heading {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Item description styling */
+.item-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Styling for the form */
+.delete-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for buttons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Edit button styling - Green */
+.btn-edit {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #218838;
+}
+
+/* Delete button styling - Red */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+form input[type="hidden"] {
+    display: none;
+}
+
+.text-danger:hover {
+    color: #dc3545; /* Keeps red color of the thrash icon on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+    transition: transform 0.2s ease-in-out;
+}
+
+.text-muted {
+    color: #6c757d; /* Custom grey for pencil 'edit' icon on hover*/
+}
+
+/* Ensure the icons in the index.html are aligned properly */
+.icon-container {
+    display: flex;
+    align-items: center; /* Vertically align icons */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.todo-text {
+    flex-grow: 1; /* Makes sure the text takes up the available space */
+}
+
+/* Ensures that the icons in the index.html are right-aligned and spaced out evenly */
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+/* Spacing between icons */
+.d-flex a {
+    margin-left: 10px;
+}
+
+/* Adjust the layout of list items */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Homepage</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="static/css/styles.css"> <!-- Own custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Make cursor a hand (pointer) when hovering over form elements and checkboxes */
+        input[type="text"]:hover,
+        input[type="date"]:hover,
+        input[type="checkbox"]:hover,
+        button:hover,
+        a:hover {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+    // Function to toggle the visibility of the "Confirm" button
+    document.addEventListener("DOMContentLoaded", function() {
+        const checkboxes = document.querySelectorAll('.item-checkbox');
+        const markCompletedBtn = document.getElementById('mark-completed-btn');
+
+        // Function to check if any checkbox is checked
+        function toggleButtonVisibility() {
+            let anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            markCompletedBtn.style.display = anyChecked ? 'block' : 'none';
+        }
+
+        // Add event listener to all checkboxes
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', toggleButtonVisibility);
+        });
+
+        // Initialize button visibility
+        toggleButtonVisibility();
+    });
+</script>
+</head>
+
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-info" role="alert">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand">LIST ME</a>
+            <div class="d-flex ml-auto">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout') }}" class="btn btn-transparent mx-2">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1>Welcome, {{ current_user.name }}</h1>
+            <p class="lead">Manage your to-do list below</p>
+        </div>
+
+        <!-- Add New Item Form -->
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                <form action="{{ url_for('add') }}" method="POST">
+                    <div class="form-group">
+                        <label for="todo_item">Add Item to the List</label>
+                        <input type="text" class="form-control" id="todo_item" name="Item to Add in the List" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="due_date">Due Date</label>
+                        <input type="date" class="form-control" id="due_date" name="due_date" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- To-Do List Section -->
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                {% if not todo_list %}
+                    <p class="text-center">Your to-do list is empty</p>
+                    {% if current_user.id == 1 %}
+                        <a href="{{ url_for('deleted_items') }}" class="btn btn-warning btn-block mt-3">Admin View: All Deleted Items From All Users</a>
+                    {% endif %}
+                {% else %}
+                    <form action="{{ url_for('mark_completed') }}" method="POST">
+                        <h5 class="text-center">Mark items as completed</h5>
+                        <ul class="list-group">
+                            {% for item in todo_list %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <!-- Checkbox and Text container, ensures they are left-aligned and vertically centered -->
+                                <div class="d-flex w-100 align-items-center">
+                                    <input type="checkbox" name="items_to_complete" value="{{ item.id }}" class="item-checkbox">
+                                    <span class="ml-2">
+                                        {{ item.todo }} by {{ item.due_date.strftime('%d %b %Y') }}
+                                    </span>
+                                </div>
+
+                                <!-- Icon container with d-flex to align the icons horizontally -->
+                                <div class="d-flex">
+                                    <a href="{{ url_for('edit_item', item_id=item.id) }}" class="text-muted mx-2">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ url_for('delete_item', item_id=item.id) }}" class="text-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            {% endfor %}
+
+                            <!-- When JS identifies that at least one checkbox is checked, the below hidden button will appear on screen-->
+                            <button type="submit" class="btn btn-success btn-block mt-3" id="mark-completed-btn" style="display: none;">Confirm</button>
+
+
+                            {% if current_user.id == 1 %}
+                                <a href="{{ url_for('deleted_items') }}" class="btn btn-warning btn-block mt-3">Admin Only: All Deleted Items From All Users</a>
+                            {% endif %}
+
+                        </ul>
+
+                    </form>
+                {% endif %}
+                <!-- Button to Navigate to Completed Items -->
+                <div class="row">
+                    <div class="col-12 col-md-8 col-lg-6 mx-auto mt-3">
+                        <a href="{{ url_for('completed_items') }}" class="btn btn-info btn-block">View Completed Items</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS & Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

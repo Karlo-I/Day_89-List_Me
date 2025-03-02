@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Items</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="container mt-3">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand">LIST ME</a>
+            <div class="d-flex ml-auto">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('home') }}" class="btn btn-transparent mx-2">Home</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-transparent mx-2">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <header class="text-center mb-4">
+            <h1>Completed Items</h1>
+            <p class="lead">These are your completed tasks</p>
+        </header>
+
+        <!-- To-Do List Section -->
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                {% if not completed_todo_list %}
+                    <p class="text-center">No completed items to display</p>
+                {% else %}
+                    <ul class="list-group">
+                        {% for item in completed_todo_list %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ item.todo }} by {{ item.due_date.strftime('%d %b %Y') }} (Owner: {{ item.item_owner.name }})
+
+                            <!-- Restore Button -->
+                            <a href="{{ url_for('restore_completed_item', item_id=item.id) }}" class="btn btn-success btn-sm">Restore</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS & Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
