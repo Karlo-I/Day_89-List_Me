@@ -6,7 +6,7 @@ This project has been the most challenging and the most time-consuming tutorial 
 
 The hardest part was probably figuring out where to start. I looked at a few examples but ultimately opted for one with the simplest design, from which I drew my inspiration.
 
-In this capstone project, I encountered many challenges, especially in terms of UX/UI design and debugging the Python code.
+In this capstone, I encountered many challenges, especially in terms of UX/UI design and debugging the Python code.
 
 Luckily, I found ChatGPT useful when I faced serious technical errors. However, I would also caveat this by saying that ChatGPT can pose real challenges, as its suggestions do not always provide what I need. Sometimes, the process requires many iterations before I find the correct solution.
 
